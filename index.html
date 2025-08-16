@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Chen - Full Stack Developer</title>
+    <title>Sathvik Addicharla - ML Engineer & AI Researcher</title>
+    <meta name="description" content="Experienced ML Engineer with 3+ years in building, fine-tuning, and benchmarking LLMs and deep learning systems. Published IEEE researcher specializing in AI/ML solutions.">
+    <meta name="keywords" content="Machine Learning Engineer, AI Researcher, LLM, Deep Learning, PyTorch, TensorFlow, AWS, Python, Data Science">
+    <meta name="author" content="Sathvik Addicharla">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sathvik Addicharla - ML Engineer & AI Researcher">
+    <meta property="og:description" content="Experienced ML Engineer specializing in LLMs, deep learning, and AI research with published IEEE papers.">
+    <meta property="og:image" content="https://your-cloudfront-domain.com/og-image.png">
+    <meta property="og:url" content="https://your-cloudfront-domain.com">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your Name - AWS Cloud Engineer">
+    <meta name="twitter:description" content="Professional cloud engineer and developer creating scalable solutions with AWS.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         * {
             margin: 0;
@@ -255,6 +277,140 @@
             margin-bottom: 1rem;
         }
 
+        /* Experience Timeline */
+        .experience-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .experience-header h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            display: block;
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .duration, .location {
+            display: inline-block;
+            font-size: 1rem;
+            color: #666;
+            margin-right: 1rem;
+        }
+
+        .experience-details {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-details li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .experience-details li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+        }
+
+        /* Education Grid */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .education-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .education-item h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .education-item p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        /* Publications */
+        .publications-section {
+            margin-top: 3rem;
+        }
+
+        .publications-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .publication-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .publication-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .publication-date {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
         /* Contact */
         .contact-form {
             max-width: 600px;
@@ -384,6 +540,8 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -391,8 +549,9 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Your Name</h1>
-            <p>AWS Cloud Engineer & Full Stack Developer</p>
+            <h1>Sathvik Addicharla</h1>
+            <p>ML Engineer & AI Researcher</p>
+            <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 1rem;">Specializing in LLMs, Deep Learning & Production ML Systems</p>
             <a href="#about" class="cta-button">Discover My Work</a>
         </div>
     </section>
@@ -401,9 +560,10 @@
         <div class="section-bg">
             <h2 class="section-title">About Me</h2>
             <p style="font-size: 1.2rem; text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8;">
-                I'm a passionate full-stack developer with expertise in modern web technologies and cloud infrastructure. 
-                I love creating beautiful, performant applications that solve real-world problems. Currently exploring 
-                the exciting world of AWS cloud services and serverless architectures.
+                I'm an experienced ML Engineer with 3+ years of hands-on experience in building, fine-tuning, and benchmarking 
+                LLMs and deep learning systems. Published IEEE researcher with a proven track record in implementing reproducible 
+                ML pipelines, optimizing model performance, and delivering production-ready solutions. Currently pursuing my 
+                Master's in Data Science at the University of North Texas with a strong focus on cutting-edge AI research.
             </p>
         </div>
     </section>
@@ -413,24 +573,79 @@
             <h2 class="section-title">Skills & Technologies</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="skill-icon">🚀</div>
-                    <h3>Frontend Development</h3>
-                    <p>React, Vue.js, HTML5, CSS3, JavaScript ES6+</p>
+                    <div class="skill-icon">🤖</div>
+                    <h3>Machine Learning & AI</h3>
+                    <p>LLMs, Transformers, PyTorch, TensorFlow, Model Optimization, Quantization</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">⚙️</div>
-                    <h3>Backend Development</h3>
-                    <p>Node.js, Python, Express.js, RESTful APIs</p>
+                    <div class="skill-icon">🧠</div>
+                    <h3>Deep Learning & NLP</h3>
+                    <p>HuggingFace, LangChain, RAG Pipelines, LSTM, Attention Mechanisms</p>
                 </div>
                 <div class="skill-card">
                     <div class="skill-icon">☁️</div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>AWS, Docker, CI/CD, GitHub Actions</p>
+                    <h3>MLOps & Infrastructure</h3>
+                    <p>AWS, Docker, Model Deployment, Scalable ML Pipelines, FAISS Vector Search</p>
                 </div>
                 <div class="skill-card">
-                    <div class="skill-icon">🗄️</div>
-                    <h3>Database Management</h3>
-                    <p>MongoDB, PostgreSQL, Redis, DynamoDB</p>
+                    <div class="skill-icon">📊</div>
+                    <h3>Data Engineering</h3>
+                    <p>Large-scale Data Processing (500GB+), Feature Engineering, Model Benchmarking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="fade-in">
+        <div class="section-bg">
+            <h2 class="section-title">Professional Experience</h2>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <h3>AI/ML Engineer Intern</h3>
+                        <span class="company">Fintech Solutions LLC</span>
+                        <span class="duration">March 2025 - July 2025</span>
+                        <span class="location">Irving, Texas</span>
+                    </div>
+                    <ul class="experience-details">
+                        <li>Designed and executed end-to-end ML workflows for customer prediction, fraud detection, and RAG-powered search</li>
+                        <li>Benchmarked 3 PyTorch models, improving prediction accuracy by <strong>85%</strong> and cutting inference time by <strong>40%</strong></li>
+                        <li>Built scalable preprocessing pipelines for <strong>500GB+</strong> data, reducing processing time by <strong>60%</strong></li>
+                        <li>Developed RAG system with LangChain, boosting query accuracy by <strong>75%</strong></li>
+                        <li>Created real-time fraud detection system with <strong>95%</strong> accuracy, preventing ~$500K/month in losses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="fade-in">
+        <div class="section-bg">
+            <h2 class="section-title">Education & Publications</h2>
+            <div class="education-grid">
+                <div class="education-item">
+                    <h3>🎓 Master's in Data Science</h3>
+                    <p><strong>University of North Texas</strong> | 04/2024 - 08/2026</p>
+                    <p>GPA: <strong>3.83/4.0</strong></p>
+                </div>
+                <div class="education-item">
+                    <h3>🎓 Bachelor's in Computer Science - Data Science</h3>
+                    <p><strong>VNR Vignana Jyothi Institute of Technology, India</strong></p>
+                    <p>GPA: <strong>8.60/10</strong></p>
+                </div>
+            </div>
+            
+            <div class="publications-section">
+                <h3 style="margin-top: 3rem; margin-bottom: 2rem; color: #333;">📚 IEEE Publications</h3>
+                <div class="publications-grid">
+                    <div class="publication-item">
+                        <h4>Retrieval-Augmented Generation Based Large Language Model Chatbot for Improving Diagnosis for Physical and Mental Health</h4>
+                        <p class="publication-date">September 2024 • IEEE</p>
+                    </div>
+                    <div class="publication-item">
+                        <h4>Transfer Learning based Autism Detection in Children</h4>
+                        <p class="publication-date">August 2024 • IEEE</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -441,27 +656,27 @@
             <h2 class="section-title">Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">E-Commerce Platform</div>
+                    <div class="project-image">🤖 RAG-based LLM Chatbot</div>
                     <div class="project-content">
-                        <h3 class="project-title">Modern E-Commerce</h3>
-                        <p class="project-tech">React • Node.js • AWS • Stripe</p>
-                        <p>A full-featured e-commerce platform with real-time inventory, payment processing, and admin dashboard.</p>
+                        <h3 class="project-title">Healthcare AI Chatbot</h3>
+                        <p class="project-tech">LLM • RAG • LangChain • NLP • IEEE Published</p>
+                        <p>AI-powered chatbot leveraging LLMs and RAG for improved diagnosis of physical and mental health conditions. Published in IEEE (09/2024).</p>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">Task Management</div>
+                    <div class="project-image">📺 AI YouTube Summarizer</div>
                     <div class="project-content">
-                        <h3 class="project-title">Team Productivity Suite</h3>
-                        <p class="project-tech">Vue.js • Python • PostgreSQL</p>
-                        <p>Collaborative task management tool with real-time updates, file sharing, and analytics dashboard.</p>
+                        <h3 class="project-title">YouTube Content Summarizer</h3>
+                        <p class="project-tech">Whisper • Transformers • FAISS • Vector Search</p>
+                        <p>AI-powered YouTube summarizer with 92% relevance accuracy, reducing manual summarization time by 75% using vector embeddings and semantic search.</p>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-image">Weather Dashboard</div>
+                    <div class="project-image">🎵 Speech Emotion Detection</div>
                     <div class="project-content">
-                        <h3 class="project-title">Weather Analytics</h3>
-                        <p class="project-tech">React • AWS Lambda • DynamoDB</p>
-                        <p>Serverless weather tracking application with historical data analysis and forecasting capabilities.</p>
+                        <h3 class="project-title">LSTM Emotion Recognition</h3>
+                        <p class="project-tech">LSTM • Deep Learning • Audio Processing • MFCCs</p>
+                        <p>Deep learning model for speech emotion detection using LSTM architecture with attention mechanisms and advanced audio preprocessing techniques.</p>
                     </div>
                 </div>
             </div>
@@ -491,12 +706,12 @@
 
     <footer>
         <div class="social-links">
-            <a href="#" title="GitHub">🔗</a>
-            <a href="#" title="LinkedIn">💼</a>
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="Email">📧</a>
+            <a href="https://github.com/Sathvik-A1901" title="GitHub" target="_blank">🔗</a>
+            <a href="https://www.linkedin.com/in/addicharla-sathvik/" title="LinkedIn" target="_blank">💼</a>
+            <a href="mailto:sathvikaddicharla@my.unt.edu" title="Email">📧</a>
+            <a href="tel:+19405975745" title="Phone">📞</a>
         </div>
-        <p>&copy; 2024 Your Name. Deployed automatically via GitHub Actions to AWS! 🚀</p>
+        <p>&copy; 2024 Sathvik Addicharla. ML Engineer & AI Researcher | Deployed automatically via GitHub Actions to AWS! 🚀</p>
     </footer>
 
     <script>
@@ -542,7 +757,7 @@
             observer.observe(el);
         });
 
-        // Contact form handling
+        // Contact form handling with professional features
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -552,6 +767,19 @@
             const email = formData.get('email');
             const message = formData.get('message');
             
+            // Basic validation
+            if (!name.trim() || !email.trim() || !message.trim()) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
             // Simulate form submission
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
@@ -559,11 +787,23 @@
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
+            // Simulate API call delay
             setTimeout(() => {
-                alert(`Thank you, ${name}! Your message has been sent. I'll get back to you soon!`);
+                // Create mailto link as fallback
+                const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nSent from Sathvik's Portfolio Website`);
+                const mailtoLink = `mailto:sathvikaddicharla@my.unt.edu?subject=${subject}&body=${body}`;
+                
+                // Open default email client
+                window.open(mailtoLink);
+                
+                alert(`Thank you, ${name}! Your message has been prepared in your default email client. I'll get back to you soon!`);
                 this.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
+                
+                // Track the contact attempt
+                console.log('📧 Contact form submitted:', { name, email, timestamp: new Date().toISOString() });
             }, 1500);
         });
 

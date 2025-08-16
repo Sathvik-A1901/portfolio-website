@@ -1,0 +1,99 @@
+<!-- Add this to your <head> section in index.html -->
+
+<!-- Google Analytics 4 (Optional - replace GA_MEASUREMENT_ID with your actual ID) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_MEASUREMENT_ID');
+</script>
+
+<!-- Simple analytics without external services -->
+<script>
+  // Track page views and user interactions
+  const analytics = {
+    sessionStart: Date.now(),
+    pageViews: 0,
+    interactions: []
+  };
+
+  // Track page load
+  document.addEventListener('DOMContentLoaded', function() {
+    analytics.pageViews++;
+    console.log('📊 Page loaded at:', new Date().toISOString());
+  });
+
+  // Track link clicks
+  document.addEventListener('click', function(e) {
+    if (e.target.tagName === 'A') {
+      analytics.interactions.push({
+        type: 'link_click',
+        target: e.target.href,
+        timestamp: Date.now()
+      });
+      console.log('🔗 Link clicked:', e.target.href);
+    }
+  });
+
+  // Track form submissions
+  document.addEventListener('submit', function(e) {
+    analytics.interactions.push({
+      type: 'form_submit',
+      form: e.target.id || 'unknown',
+      timestamp: Date.now()
+    });
+    console.log('📝 Form submitted:', e.target.id);
+  });
+
+  // Track time spent on page
+  window.addEventListener('beforeunload', function() {
+    const timeSpent = Date.now() - analytics.sessionStart;
+    console.log('⏱️ Time spent on page:', Math.round(timeSpent / 1000), 'seconds');
+    
+    // You could send this data to your own analytics endpoint
+    // or store it in localStorage for debugging
+    localStorage.setItem('siteAnalytics', JSON.stringify({
+      timeSpent: timeSpent,
+      interactions: analytics.interactions.length,
+      lastVisit: Date.now()
+    }));
+  });
+</script>
+
+<!-- Performance monitoring -->
+<script>
+  // Monitor Core Web Vitals
+  function trackWebVitals() {
+    // Largest Contentful Paint
+    new PerformanceObserver((entryList) => {
+      const entries = entryList.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      console.log('🎯 LCP:', lastEntry.startTime);
+    }).observe({entryTypes: ['largest-contentful-paint']});
+
+    // First Input Delay
+    new PerformanceObserver((entryList) => {
+      const firstInput = entryList.getEntries()[0];
+      if (firstInput) {
+        console.log('⚡ FID:', firstInput.processingStart - firstInput.startTime);
+      }
+    }).observe({type: 'first-input', buffered: true});
+
+    // Cumulative Layout Shift
+    let clsValue = 0;
+    new PerformanceObserver((entryList) => {
+      for (const entry of entryList.getEntries()) {
+        if (!entry.hadRecentInput) {
+          clsValue += entry.value;
+        }
+      }
+      console.log('📐 CLS:', clsValue);
+    }).observe({type: 'layout-shift', buffered: true});
+  }
+
+  // Run performance tracking
+  if ('PerformanceObserver' in window) {
+    trackWebVitals();
+  }
+</script>

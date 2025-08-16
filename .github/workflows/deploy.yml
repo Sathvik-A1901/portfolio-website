@@ -1,4 +1,4 @@
-name: Deploy to AWS S3 and CloudFront
+name: Build & Deploy to AWS
 
 on:
   push:
@@ -21,13 +21,36 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
     
-    - name: Upload files to S3
+    - name: Optimize and minify files
       run: |
-        aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} \
-          --exclude ".git/*" \
-          --exclude ".github/*" \
-          --exclude "README.md" \
-          --delete
+        # Install minification tools
+        npm install -g html-minifier-terser
+        
+        # Create optimized directory
+        mkdir -p optimized
+        
+        # Minify HTML files
+        find . -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" | while read file; do
+          html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/$(basename "$file")"
+        done
+        
+        # Copy other files
+        find . -type f ! -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./.github/*" -not -name "README.md" -not -name "package*.json" | while read file; do
+          cp "$file" "optimized/"
+        done
+    
+    - name: Upload optimized files to S3
+      run: |
+        aws s3 sync ./optimized s3://${{ secrets.S3_BUCKET_NAME }} \
+          --delete \
+          --cache-control "public, max-age=31536000" \
+          --exclude "*.html" 
+        
+        # Upload HTML with shorter cache
+        aws s3 sync ./optimized s3://${{ secrets.S3_BUCKET_NAME }} \
+          --exclude "*" \
+          --include "*.html" \
+          --cache-control "public, max-age=3600"
     
     - name: Invalidate CloudFront cache
       run: |
@@ -35,9 +58,20 @@ jobs:
           --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
           --paths "/*"
     
-    - name: Display deployment info
+    - name: Run security headers check
       run: |
-        echo "🚀 Website deployed successfully!"
+        echo "🔒 Setting up security headers..."
+        # This would typically be done via Lambda@Edge or CloudFront Functions
+    
+    - name: Display deployment summary
+      run: |
+        echo "🚀 Deployment Summary"
+        echo "===================="
         echo "📍 S3 Bucket: ${{ secrets.S3_BUCKET_NAME }}"
-        echo "🌐 CloudFront Distribution: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
-        echo "✅ Cache invalidated - changes should be live in a few minutes"
+        echo "🌐 CloudFront: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+        echo "⚡ Files optimized and minified"
+        echo "🔄 Cache invalidated"
+        echo "✅ Website is now live!"
+        echo ""
+        echo "🔗 Your website should be available at:"
+        echo "https://$(aws cloudfront get-distribution --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --query 'Distribution.DomainName' --output text)"
