@@ -34,11 +34,22 @@ jobs:
           mkdir -p "optimized/${dir#./}"
         done
         
+        # List HTML files before processing
+        echo "=== HTML files found ==="
+        find . -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*"
+        
         # Minify HTML files while preserving directory structure
         find . -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" | while read file; do
+          echo "Processing: $file"
           dir=$(dirname "$file")
           mkdir -p "optimized/${dir#./}"
-          html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/${file#./}"
+          # Try minification, if it fails, copy the original file
+          if html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/${file#./}" 2>/dev/null; then
+            echo "✓ Minified: $file"
+          else
+            echo "⚠ Minification failed for $file, copying original"
+            cp "$file" "optimized/${file#./}"
+          fi
         done
         
         # Copy other files while preserving directory structure
