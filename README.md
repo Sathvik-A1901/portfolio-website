@@ -1,12 +1,5 @@
 # 🚀 Sathvik Addicharla - Professional Portfolio
 
-[![Deploy Status](https://github.com/YOUR_USERNAME/sathvik-portfolio-aws/workflows/Deploy%20to%20AWS/badge.svg)](https://github.com/YOUR_USERNAME/sathvik-portfolio-aws/actions)
-[![Website](https://img.shields.io/website?url=https%3A//YOUR-CLOUDFRONT-DOMAIN.cloudfront.net)](https://YOUR-CLOUDFRONT-DOMAIN.cloudfront.net)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-> **Professional portfolio website for Sathvik Addicharla - ML Engineer & AI Researcher**  
-> Featuring automatic deployment to AWS S3 + CloudFront via GitHub Actions
-
 ## 👨‍💼 About Me
 
 I'm an experienced **ML Engineer** with 3+ years of hands-on experience in building, fine-tuning, and benchmarking **LLMs and deep learning systems**. Published **IEEE researcher** with a proven track record in implementing reproducible ML pipelines and delivering production-ready solutions.
@@ -186,9 +179,6 @@ While this is a personal portfolio, I welcome suggestions and feedback!
 3. Make your changes
 4. Submit a pull request
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
