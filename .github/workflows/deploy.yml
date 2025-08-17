@@ -48,18 +48,34 @@ jobs:
           cp "$file" "optimized/${file#./}"
         done
     
+    - name: Debug - List optimized directory contents
+      run: |
+        echo "=== Contents of optimized directory ==="
+        ls -la optimized/
+        echo "=== HTML files in optimized directory ==="
+        find optimized -name "*.html" -type f
+        echo "=== All files in optimized directory ==="
+        find optimized -type f
+    
     - name: Upload optimized files to S3
       run: |
+        # First, upload all non-HTML files
         aws s3 sync ./optimized s3://${{ secrets.S3_BUCKET_NAME }} \
           --delete \
           --cache-control "public, max-age=31536000" \
           --exclude "*.html" 
         
-        # Upload HTML with shorter cache
+        # Then upload HTML files with shorter cache
         aws s3 sync ./optimized s3://${{ secrets.S3_BUCKET_NAME }} \
           --exclude "*" \
           --include "*.html" \
-          --cache-control "public, max-age=3600"
+          --cache-control "public, max-age=3600" \
+          --content-type "text/html"
+    
+    - name: Verify S3 upload
+      run: |
+        echo "=== Files in S3 bucket ==="
+        aws s3 ls s3://${{ secrets.S3_BUCKET_NAME }} --recursive
     
     - name: Invalidate CloudFront cache
       run: |
