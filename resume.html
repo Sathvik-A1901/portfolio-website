@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathvik Addicharla - Resume</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(-45deg, #3B82F6, #2563EB, #60A5FA, #93C5FD);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .resume-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .profile-header {
+            margin-bottom: 2rem;
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .profile-header p {
+            font-size: 1.2rem;
+            color: #3B82F6;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+        }
+
+        .summary {
+            text-align: left;
+            margin: 2rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            border-left: 4px solid #3B82F6;
+        }
+
+        .download-section {
+            margin: 3rem 0;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #3B82F6, #2563EB);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .skills-section {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .skill-category h4 {
+            color: #3B82F6;
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .resume-container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+            
+            .profile-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="profile-header">
+            <h1>Sathvik Addicharla</h1>
+            <p>ML Engineer & AI Researcher</p>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <span>📍</span>
+                <span>Denton, TX 76207</span>
+            </div>
+            <div class="contact-item">
+                <span>📧</span>
+                <span>sathvikaddicharla@my.unt.edu</span>
+            </div>
+            <div class="contact-item">
+                <span>📞</span>
+                <span>(940) 597-5745</span>
+            </div>
+        </div>
+
+        <div class="summary">
+            <h3>Professional Summary</h3>
+            <p>Experienced ML Engineer with 3+ years of hands-on experience in building, fine-tuning, and benchmarking LLMs and deep learning systems. Proven track record in implementing reproducible ML pipelines, optimizing model performance, and delivering production-ready solutions. Strong expertise in Python engineering, Docker-based development, and detailed technical planning for complex ML tasks. Published IEEE researcher with demonstrated ability to translate natural language requirements into executable code implementations.</p>
+        </div>
+
+        <div class="skills-section">
+            <h3>Key Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Machine Learning</h4>
+                    <p>LLMs, Transformers, HuggingFace, PyTorch, TensorFlow</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Deep Learning & NLP</h4>
+                    <p>LangChain, RAG Pipelines, LSTM, Attention Mechanisms</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Infrastructure</h4>
+                    <p>AWS, Docker, FAISS Vector Search, Model Deployment</p>
+                </div>
+                <div class="skill-category">
+                    <h4>Data Engineering</h4>
+                    <p>Large-scale Processing (500GB+), Feature Engineering</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <h3 style="margin-bottom: 2rem;">Download Resume</h3>
+            <a href="assets/documents/Sathvik_Addicharla_AI_Research_Resume.pdf" download="Sathvik_Addicharla_Resume.pdf" class="download-btn">📄 Download PDF</a>
+            <a href="mailto:sathvikaddicharla@my.unt.edu?subject=Resume%20Request&body=Hi%20Sathvik,%0A%0AI%20would%20like%20to%20request%20your%20latest%20resume.%0A%0AThank%20you!" class="download-btn">📧 Request via Email</a>
+        </div>
+
+        <a href="index.html" class="back-btn">← Back to Portfolio</a>
+    </div>
+
+    <script>
+        // PDF download is now handled directly by the download attribute
+
+        // Add some interactive effects
+        document.querySelectorAll('.download-btn, .back-btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) scale(1.05)';
+            });
+            
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
