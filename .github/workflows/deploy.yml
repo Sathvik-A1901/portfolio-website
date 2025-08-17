@@ -44,7 +44,7 @@ jobs:
           dir=$(dirname "$file")
           mkdir -p "optimized/${dir#./}"
           # Try minification, if it fails, copy the original file
-          if html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/${file#./}" 2>/dev/null; then
+          if html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" -o "optimized/${file#./}" 2>&1; then
             echo "✓ Minified: $file"
           else
             echo "⚠ Minification failed for $file, copying original"
@@ -57,6 +57,14 @@ jobs:
           dir=$(dirname "$file")
           mkdir -p "optimized/${dir#./}"
           cp "$file" "optimized/${file#./}"
+        done
+        
+        # Ensure critical HTML files exist (fallback)
+        for htmlfile in index.html resume.html error.html; do
+          if [ -f "$htmlfile" ] && [ ! -f "optimized/$htmlfile" ]; then
+            echo "⚠️ Copying missing $htmlfile to optimized directory"
+            cp "$htmlfile" "optimized/$htmlfile"
+          fi
         done
     
     - name: Debug - List optimized directory contents
@@ -72,7 +80,6 @@ jobs:
       run: |
         # First, upload all non-HTML files
         aws s3 sync ./optimized s3://${{ secrets.S3_BUCKET_NAME }} \
-          --delete \
           --cache-control "public, max-age=31536000" \
           --exclude "*.html" 
         
@@ -110,4 +117,4 @@ jobs:
         echo "✅ Website is now live!"
         echo ""
         echo "🔗 Your website should be available at:"
-        echo "https://$(aws cloudfront get-distribution --id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --query 'Distribution.DomainName' --output text)"
+        echo "https://d1234567890.cloudfront.net (check your CloudFront console for actual URL)"
