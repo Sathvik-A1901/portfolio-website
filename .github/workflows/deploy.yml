@@ -29,14 +29,23 @@ jobs:
         # Create optimized directory
         mkdir -p optimized
         
-        # Minify HTML files
-        find . -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" | while read file; do
-          html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/$(basename "$file")"
+        # Copy directory structure first
+        find . -type d -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./.github/*" | while read dir; do
+          mkdir -p "optimized/${dir#./}"
         done
         
-        # Copy other files
+        # Minify HTML files while preserving directory structure
+        find . -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" | while read file; do
+          dir=$(dirname "$file")
+          mkdir -p "optimized/${dir#./}"
+          html-minifier-terser --collapse-whitespace --remove-comments --minify-js --minify-css "$file" > "optimized/${file#./}"
+        done
+        
+        # Copy other files while preserving directory structure
         find . -type f ! -name "*.html" -not -path "./optimized/*" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./.github/*" -not -name "README.md" -not -name "package*.json" | while read file; do
-          cp "$file" "optimized/"
+          dir=$(dirname "$file")
+          mkdir -p "optimized/${dir#./}"
+          cp "$file" "optimized/${file#./}"
         done
     
     - name: Upload optimized files to S3
